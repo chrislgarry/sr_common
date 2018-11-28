@@ -18,7 +18,7 @@ xmlns:geom="http://playerstage.sourceforge.net/gazebo/xmlschema/#geom">
   <xacro:macro name="thdistal"
   params="muscle bio bt_sp ubi eli prefix parent">
     <xacro:if value="${bio}">
-      <!--    BIOTAC -->
+      <!-- BIOTAC -->
       <link name="${prefix}thdistal_J1_dummy">
         <inertial>
           <origin xyz="0 0 0" rpy="0 0 0" />
@@ -112,11 +112,10 @@ xmlns:geom="http://playerstage.sourceforge.net/gazebo/xmlschema/#geom">
       <joint name="${prefix}thtip" type="fixed">
         <parent link="${prefix}thdistal_J1_dummy" />
         <child link="${prefix}thtip" />
-        <origin xyz="0.0 0.004 ${0.032}"
-        rpy="0 0 0" />
-        <!-- approximated only FIXME -->
+        <origin xyz="0.0 0.0036" rpy="0 0 0" />
       </joint>
     </xacro:if>
+
     <xacro:unless value="${bio}">
       <!-- common -->
       <link name="${prefix}thdistal">
@@ -127,7 +126,7 @@ xmlns:geom="http://playerstage.sourceforge.net/gazebo/xmlschema/#geom">
           iyy="0.0000022" iyz="0.0" izz="0.000001" />
         </inertial>
         <visual>
-          <origin xyz="0 0 0" rpy="0 0 0" />
+          <origin xyz="0 0 0.0022" rpy="0 0 0" />
           <geometry name="${prefix}thdistal_visual">
             <xacro:if value="${eli}">
               <!-- Ellispoid distal  -->
@@ -140,17 +139,17 @@ xmlns:geom="http://playerstage.sourceforge.net/gazebo/xmlschema/#geom">
                 <mesh filename="package://sr_description/hand/model/TH1_z.dae"
                       scale="0.001 0.001 0.001" />
               </xacro:if>
-	      <xacro:unless value="${ubi}">
-		<xacro:if value="${bt_sp}">
-		  <!-- bt sp distal  -->
-		  <mesh filename="package://sr_description/hand/model/biotacs/sp.dae" />
-		</xacro:if>
-		<xacro:unless value="${bt_sp}">
-		  <!-- Standard distal  -->
-                  <mesh filename="package://sr_description/hand/model/TH1_z.dae"
-			scale="0.001 0.001 0.001" />
-		</xacro:unless>
-	      </xacro:unless>
+	          <xacro:unless value="${ubi}">
+		        <xacro:if value="${bt_sp}">
+		          <!-- bt sp distal  -->
+		          <mesh filename="package://sr_description/hand/model/biotacs/sp.dae" />
+		        </xacro:if>
+	        	<xacro:unless value="${bt_sp}">
+		          <!-- Standard distal  -->
+              <mesh filename="package://sr_description/hand/model/TH1_z.dae"
+			                scale="0.001 0.001 0.001" />
+		        </xacro:unless>
+	          </xacro:unless>
             </xacro:unless>
           </geometry>
           <material name="shadow_thmiddle_material">
@@ -158,7 +157,7 @@ xmlns:geom="http://playerstage.sourceforge.net/gazebo/xmlschema/#geom">
           </material>
         </visual>
         <collision>
-          <origin xyz="0 0 0" rpy="0 0 0" />
+          <origin xyz="0 0 0.0022" rpy="0 0 0" />
           <geometry name="${prefix}thmiddle_collision_geom">
             <xacro:if value="${eli}">
               <!-- Ellispoid distal  -->
@@ -172,15 +171,15 @@ xmlns:geom="http://playerstage.sourceforge.net/gazebo/xmlschema/#geom">
                 scale="0.001 0.001 0.001" />
               </xacro:if>
               <xacro:unless value="${ubi}">
-		<xacro:if value="${bt_sp}">
-		  <!-- bt sp distal  -->
-                  <mesh filename="package://sr_description/hand/model/biotacs/sp.dae" />
-		</xacro:if>
-		<xacro:unless value="${bt_sp}">
+		            <xacro:if value="${bt_sp}">
+		              <!-- bt sp distal  -->
+                    <mesh filename="package://sr_description/hand/model/biotacs/sp.dae" />
+	            	</xacro:if>
+		            <xacro:unless value="${bt_sp}">
                   <!-- Standard distal  -->
                   <mesh filename="package://sr_description/hand/model/TH1_z.dae"
-			scale="0.001 0.001 0.001" />
-		</xacro:unless>
+			            scale="0.001 0.001 0.001" />
+		            </xacro:unless>
               </xacro:unless>
             </xacro:unless>
             <!--      <box size="0.015 0.015 0.015" /> -->
@@ -210,7 +209,7 @@ xmlns:geom="http://playerstage.sourceforge.net/gazebo/xmlschema/#geom">
       <joint name="${prefix}thtip" type="fixed">
         <parent link="${prefix}thdistal" />
         <child link="${prefix}thtip" />
-        <origin xyz="0 0 0.0275" rpy="0 0 0" />
+        <origin xyz="0 0 0.0362" rpy="0 0 0" />
       </joint>
       <xacro:thdistal_gazebo prefix="${prefix}" />
     </xacro:unless>
